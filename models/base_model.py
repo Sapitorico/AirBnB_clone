@@ -4,6 +4,7 @@ manage (create, update, destroy, etc.)
 objects through a console/command interpreter"""
 from uuid import uuid4
 from datetime import datetime
+from models.__init__ import storage
 
 
 class BaseModel():
@@ -25,6 +26,8 @@ class BaseModel():
             * Tunas to keep created_at and updated_at in datetime format
         otherwise:
             create id and created_at as you did previously (new instance)
+                __init__(self, *args, **kwargs)
+                if it’s a new instance (not from a dictionary representation), add a call to the method new(self) on storage
         """
         """ Now to get the current date and time """
         self.updated_at = datetime.now()
@@ -37,6 +40,7 @@ class BaseModel():
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
+            storage.new(self)
 
     """ Public instance methods:
     Save: Update the Datetime
@@ -47,6 +51,10 @@ class BaseModel():
         """ Update the UPDATED_AAT public
             instance attribute with the current date and time """
         self.updated_at = datetime.now()
+        """
+        call save(self) method of storage
+        """
+        storage.save()
 
     def to_dict(self):
         """ Returns a dictionary that contains all the
