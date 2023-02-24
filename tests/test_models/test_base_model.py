@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ test from class BaseModel """
 import unittest
-from models import BaseModel
+from models.base_model import BaseModel
 from datetime import datetime
 
 
@@ -42,7 +42,11 @@ class TestBaseModel(unittest.TestCase):
         """Str test if the type of data is a string """
         my_model = BaseModel()
         my_model_str = my_model.__str__()
+        my_model.name = "sapitorico"
+        my_model.my_number = 89
+        my_model.save()
         self.assertEqual
+        self.assertEqual(type(my_model_str), str)
         (my_model_str, f"[BaseModel] ({my_model.id}) {my_model.__dict__}")
 
     def test_kwargs(self):
