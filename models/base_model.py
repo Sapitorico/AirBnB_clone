@@ -4,7 +4,7 @@ manage (create, update, destroy, etc.)
 objects through a console/command interpreter"""
 import uuid
 from datetime import datetime
-from models.__init__ import storage
+from models import storage
 
 
 
