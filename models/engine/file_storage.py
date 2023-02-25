@@ -35,7 +35,6 @@ class FileStorage:
         with open(self.__file_path, "w", encoding='utf-8') as f:
             json.dump(self.__objects, f)
 
-
     def reload(self):
         """ reloaded objects are same as create """
         if os.path.isfile(self.__file_path):

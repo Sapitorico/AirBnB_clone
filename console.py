@@ -38,25 +38,6 @@ class HBNBCommand(cmd.Cmd):
             If the instance of the class name doesn’t exist for the id, print ** no instance found ** (ex: $ show BaseModel 121212)
     """
 
-    def do_create(self, arg):
-        """create a new instances of BaseModel and save data base and print the id"""
-        if arg == "":
-            print("** class name missing **")
-        elif arg != "BaseModel":
-            print("** class doesn't exist **")
-        else:
-            new_instance = BaseModel()
-            new_instance.save()
-            print(new_instance.id)
-
-    def do_show(self, arg):
-        """Prints the string representation of an instance based on the class name and id."""
-        if arg == "":
-            print("** class name missing **")
-        elif arg != "BaseModel":
-            print("** class doesn't exist **")
-        else:
-            print(arg)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
