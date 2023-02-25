@@ -24,12 +24,12 @@ class FileStorage:
         If the file doesn’t exist, no exception should be raised)
         create file json
     """
+    """ reloaded objects are same as create """
     def all(self):
         return self.__objects
 
     def new(self, obj):
-        key = f"{obj.__class__.__name__}.{obj.id}"
-        self.__objects[key] = obj.to_dict()
+        self.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
     def save(self):
         with open(self.__file_path, "w", encoding='utf-8') as f:
@@ -37,6 +37,7 @@ class FileStorage:
 
 
     def reload(self):
+        """ reloaded objects are same as create """
         if os.path.isfile(self.__file_path):
             with open(self.__file_path, "r", encoding='utf-8') as f:
                 self.__objects = json.load(f)

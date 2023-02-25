@@ -39,8 +39,6 @@ class BaseModel():
                     value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 if key != "__class__":
                     setattr(self, key, value)
-                if key == id:
-                    self.id = value
         else:
             self.id = str(uuid.uuid4())
             storage.new(self)
