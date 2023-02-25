@@ -5,7 +5,6 @@ from models.engine.file_storage import FileStorage
 from models import storage
 
 
-
 class TestFileStorage(unittest.TestCase):
     def test_init(self):
         self.assertTrue(hasattr(FileStorage, "__init__"))
