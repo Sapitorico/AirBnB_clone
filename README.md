@@ -35,7 +35,7 @@ La primera parte de este proyecto es crear un intérprete de comandos para manip
 <details>
 <summary><h2>BaseModel</h2></summary>
 
-    Es la clase base de todos los modelos de AirBnB. Esta clase es la encargada de manejar la serialización/deserialización de los atributos de los otros modelos, y de guardar en un archivo JSON todos los objetos instanciados. También es la clase base de todos los otros modelos de AirBnB, por lo que hereda de ella.
+Es la clase base de todos los modelos de AirBnB. Esta clase es la encargada de manejar la serialización/deserialización de los atributos de los otros modelos, y de guardar en un archivo JSON todos los objetos instanciados. También es la clase base de todos los otros modelos de AirBnB, por lo que hereda de ella.
 
 <h3>Modulos</h3>
 
@@ -52,7 +52,6 @@ La primera parte de este proyecto es crear un intérprete de comandos para manip
 <td><a href="">test_base_model</a></td>
 
 </tr> <!-- fin de fila 1-->
-
 <td>FileStorage</td>
 
 <td>
