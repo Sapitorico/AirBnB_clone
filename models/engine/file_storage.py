@@ -24,7 +24,6 @@ class FileStorage:
         If the file doesn’t exist, no exception should be raised)
         create file json
     """
-    """ reloaded objects are same as create """
     def all(self):
         return self.__objects
 
