@@ -28,7 +28,7 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-        key = "{}.{}".format(type(obj).__name__, obj.id)
+        key = obj.__class__.__name__ + "." + obj.id
         self.__objects[key] = obj.to_dict()
 
     def save(self):
@@ -36,7 +36,6 @@ class FileStorage:
             json.dump(self.__objects, f)
 
     def reload(self):
-        """ reloaded objects are same as create """
         if os.path.isfile(self.__file_path):
             with open(self.__file_path, "r", encoding='utf-8') as f:
                 self.__objects = json.load(f)
