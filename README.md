@@ -8,10 +8,10 @@ La primera parte de este proyecto es crear un intérprete de comandos para manip
 
 ## Primer paso
 
-    Escribir un intérprete de comandos para gestionar tus objetos AirBnB.
-    Cada tarea está vinculada y te ayudará a: poner en marcha una clase padre que se encargue de la inicialización, serialización y deserialización de tus futuras instancias crear un flujo simple de serialización/deserialización: Diccionario de instancias Archivo de cadenas JSON crear todas las clases utilizadas para AirBnB que heredan de BaseModel crear el primer motor de almacenamiento abstracto del proyecto: Almacenamiento de archivos.
-    Segundo paso: Escribir un comando de consola para manipular los objetos de tu aplicación.
-    Cada tarea está vinculada y te ayudará a: crear un comando de consola para manipular tus objetos de la aplicación crear los métodos de creación, actualización y destrucción de los objetos de tu aplicación crear los métodos de consulta de tus objetos de tu aplicación
+Escribir un intérprete de comandos para gestionar tus objetos AirBnB.
+Cada tarea está vinculada y te ayudará a: poner en marcha una clase padre que se encargue de la inicialización, serialización y deserialización de tus futuras instancias crear un flujo simple de serialización/deserialización: Diccionario de instancias Archivo de cadenas JSON crear todas las clases utilizadas para AirBnB que heredan de BaseModel crear el primer motor de almacenamiento abstracto del proyecto: Almacenamiento de archivos.
+Segundo paso: Escribir un comando de consola para manipular los objetos de tu aplicación.
+Cada tarea está vinculada y te ayudará a: crear un comando de consola para manipular tus objetos de la aplicación crear los métodos de creación, actualización y destrucción de los objetos de tu aplicación crear los métodos de consulta de tus objetos de tu aplicación
 
 -----
 
@@ -21,14 +21,13 @@ La primera parte de este proyecto es crear un intérprete de comandos para manip
 
 <th>Class</th>
 <th>Description</th>
-<th>File</th>
 <th>Tests Files</th>
 
 </tr>
 
 <tr> <!-- fila 1  -->
 
-<td>BaseModel</td> <!-- Class columna 1-->
+<td><a href="">BaseModel</a></td> <!-- Class columna 1-->
 
 <td> <!-- description -->
 
@@ -45,34 +44,88 @@ Es la clase base de todos los modelos de AirBnB. Esta clase es la encargada de m
 * datetime:
     El módulo datetime en Python proporciona clases para manipular fechas y horas, permitiendo operaciones aritméticas con fechas y horas. Se puede crear un datetime manualmente pasando los parámetros (year, month, day, hour=0, minute=0, second=0, microsecond=0, tzinfo=None). Para trabajar con fechas en Python se debe importar el módulo datetime que incorpora los tipos de datos date, time y datetime para representar fechas y horas.
 
+* storage:
+    La variable storage proporciona las funcionalidades de almacenamiento y recuperación de datos. Se utiliza la función new() del módulo storage para registrar una nueva instancia de clase en la aplicación. Además, el método save() utiliza el módulo storage para guardar los cambios en la instancia
+
 </details>
 </td>
 
-<td><a href="">base_model</a></td> <!-- file -->
 <td><a href="">test_base_model</a></td>
 
+
+
 </tr> <!-- fin de fila 1-->
-<td>FileStorage</td>
+
+<td><a href="">FileStorage</a></td>
+
 
 <td>
 
 <details>
 <summary><h2>FileStorage</h2></summary>
 
-FileStorage es una clase que se utiliza para manejar el almacenamiento persistente de objetos en una aplicación web. Se enfoca en el almacenamiento de archivos y se utiliza para separar la gestión de almacenamiento de la lógica del modelo, lo que permite que los modelos sean modulares e independientes. Al utilizar atributos de clase en lugar de atributos de instancia, se proporciona una descripción clara y un valor predeterminado de cualquier atributo, lo que permite un comportamiento consistente del modelo en cualquier sistema de almacenamiento utilizado. En resumen, FileStorage se encarga de la persistencia de los objetos en una aplicación web mediante el almacenamiento de archivos.
+FileStorage es una clase que se utiliza para manejar el almacenamiento persistente de objetos en una aplicación web. Se enfoca en el almacenamiento de archivos y se utiliza para separar la gestión de almacenamiento de la lógica del modelo, lo que permite que los modelos sean modulares e independientes. Al utilizar atributos de clase en lugar de atributos de instancia, se proporciona una descripción clara y un valor predeterminado de cualquier atributo, lo que permite un comportamiento consistente del modelo en cualquier sistema de almacenamiento utilizado. En resumen, FileStorage es una implementación de un sistema de almacenamiento en archivo utilizando el formato JSON para almacenar información sobre instancias de clases.
 
 
 <h3>Modulos</h3>
 
-* El módulo Python json proporciona una forma de codificar y decodificar datos JSON. Se utiliza para convertir objetos Python en una representación serializada que puede almacenarse en un archivo o transmitirse a través de la red. El operador módulo (%) en Python se utiliza para obtener el resto de una división.
+* json:
+    proporciona una forma de codificar y decodificar datos JSON. Se utiliza para convertir objetos Python en una representación serializada que puede almacenarse en un archivo o transmitirse a través de la red. El operador módulo (%) en Python se utiliza para obtener el resto de una división.
 
-* El módulo os.path en Python se utiliza para diferentes propósitos, tales como la fusión, la normalización y la recuperación de los nombres de ruta en Python.
+* os.path:
+    en Python se utiliza para diferentes propósitos, tales como la fusión, la normalización y la recuperación de los nombres de ruta en Python.
 
 </details>
 </td>
-<td><a href="">file_storage</a></td> <!-- file -->
 <td><a href="">test file_storage</a></td>
+
+
+<tr>
+
+<td><a href="">Console</a></td>
+
+<td>
+<details>
+<summary><h2>Console</h2></summary>
+
+La consola , HBNBCommand, es un intérprete de comandos que permite al usuario crear, actualizar, eliminar y buscar objetos utilizando comandos específicos. En otras palabras, esta consola es una interfaz de línea de comandos que interactúa con objetos del programa.
+
+<h3>Modulos</h3>
+
+El módulo cmd es una biblioteca estándar de Python que proporciona una clase base para crear consolas interactivas. Este módulo facilita la definición de comandos personalizados, la administración de argumentos y la personalización de la apariencia de la consola. Es una herramienta útil para crear interfaces de línea de comandos interactivas en Python.
+
+<h3>commands:</h3>
+
+## create:
+    Crea una nueva instancia, la guarda en un archivo JSON y muestra su id.
+
+## show:
+    Muestra la representación en cadena de una instancia basada en el nombre de la clase y el id.
+
+## destroy:
+    Elimina una instancia basada en el nombre de la clase y el id (guarda el cambio en el archivo JSON)
+
+## all:
+    Muestra la representación en cadena de todas las instancias basadas o no en el nombre de la clase
+
+## update:
+    Actualiza una instancia basada en el nombre de la clase y el id agregando o actualizando un atributo (guarda el cambio en el archivo JSON). Solo se puede actualizar un atributo a la vez. Se puede asumir que el nombre del atributo es válido (existe para este modelo) y que el valor del atributo se convierte al tipo de atributo adecuado.
+
+</details>
+
+<td><a href="">tests</a></a></td>
+
+</td>
+
+</tr>  <!-- fin de la fila 3 -->
+
+<tr>
+<td>wqewqe</td>
+</tr>
+
 </table>
+
+
 
 -----
 
