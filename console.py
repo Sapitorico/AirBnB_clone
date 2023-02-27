@@ -10,7 +10,7 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """ Your class definition must be: class HBNBCommand(cmd.Cmd):"""
 
-    prompt = 'sapito>> '
+    prompt = '(hbnb) '
     classes = ["BaseModel"]
     """ Mensajes de error: """
     error_class = {'missing_class': '** class name missing **',
