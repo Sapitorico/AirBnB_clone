@@ -23,13 +23,12 @@ class FileStorage:
         If the file doesn’t exist, no exception should be raised)
         create file json
     """
-
     def all(self):
         return self.__objects
 
     def new(self, obj):
         key = obj.__class__.__name__ + "." + obj.id
-        self.__objects[key] = obj
+        self.__objects[key] = obj.to_dict()
 
     def save(self):
         with open(self.__file_path, "w", encoding='utf-8') as f:
@@ -37,15 +36,12 @@ class FileStorage:
 
     def reload(self):
         try:
-            with open(self.__file_path, mode='r', encoding='utf-8') as file:
-                obj_dict = json.load(file)
+            with open(FileStorage.__file_path, 'r') as f:
+                obj_dict = json.load(f)
                 for key, value in obj_dict.items():
-                    if value['__class__'] == "BaseModel":
-                        obj = BaseModel(**value)
-                    elif value['__class__'] == "User":
-                        obj = User(**value)
-                    else:
-                        continue
-                    self.__objects[key] = obj
+                    cls_name = value["__class__"]
+                    if cls_name in self.__classes:
+                        obj = self.__classes[cls_name](**value)
+                        self.__objects[key] = obj
         except FileNotFoundError:
             pass
