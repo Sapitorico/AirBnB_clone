@@ -3,6 +3,7 @@
 objects via a console / command interpreter
 """
 import cmd
+import json
 from models.base_model import BaseModel
 from models import storage
 
@@ -68,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
                 if obj_key not in objects:
                     print(self.error_class["dont_exists_id"])
                 else:
-                    print(objects[obj_key])
+                    print(json.dumps(objects[obj_key]))
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id"""
