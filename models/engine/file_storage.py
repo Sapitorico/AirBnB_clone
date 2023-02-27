@@ -10,9 +10,8 @@ class FileStorage:
         __file_path: string -Route to the JSON file (for example: file.json)
         __objects: Dictionary: Vacuum
     """
-    def __init__(self):
-        self.__file_path = "file.json"
-        self.__objects = {}
+    __file_path = "file.json"
+    __objects = {}
 
     """
     Public instance methods:
@@ -24,21 +23,29 @@ class FileStorage:
         If the file doesn’t exist, no exception should be raised)
         create file json
     """
+
     def all(self):
         return self.__objects
 
     def new(self, obj):
         key = obj.__class__.__name__ + "." + obj.id
-        self.__objects[key] = obj.to_dict()
+        self.__objects[key] = obj
 
     def save(self):
         with open(self.__file_path, "w", encoding='utf-8') as f:
             json.dump(self.__objects, f)
 
     def reload(self):
-        if os.path.isfile(self.__file_path):
-            with open(self.__file_path, "r", encoding='utf-8') as f:
-                self.__objects = json.load(f)
-        else:
-            with open(self.__file_path, "w", encoding='utf-8') as f:
-                json.dump(self.__objects, f)
+        try:
+            with open(self.__file_path, mode='r', encoding='utf-8') as file:
+                obj_dict = json.load(file)
+                for key, value in obj_dict.items():
+                    if value['__class__'] == "BaseModel":
+                        obj = BaseModel(**value)
+                    elif value['__class__'] == "User":
+                        obj = User(**value)
+                    else:
+                        continue
+                    self.__objects[key] = obj
+        except FileNotFoundError:
+            pass

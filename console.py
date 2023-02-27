@@ -3,7 +3,6 @@
 objects via a console / command interpreter
 """
 import cmd
-import json
 from models.base_model import BaseModel
 from models import storage
 
@@ -12,6 +11,7 @@ class HBNBCommand(cmd.Cmd):
     """ Your class definition must be: class HBNBCommand(cmd.Cmd):"""
 
     prompt = 'sapito>> '
+    classes = ["BaseModel"]
     """ Mensajes de error: """
     error_class = {'missing_class': '** class name missing **',
                    'dont_exists_class': "** class doesn't exist **",
@@ -21,11 +21,11 @@ class HBNBCommand(cmd.Cmd):
                    'missing_value': '** value missing **'}
 
     def do_quit(self, arg):
-        """Quit command to exit the program\n"""
+        """Quit command to exit the program"""
         return True
 
     def do_EOF(self, arg):
-        """Quit command to exit the program\n"""
+        """Quit command to exit the program"""
         return True
 
     def emptyline(self):
@@ -61,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             class_name = args[0]
             obj_id = args[1]
-            if class_name not in ["BaseModel"]:
+            if class_name not in self.classes:
                 print(self.error_class["dont_exists_class"])
             else:
                 objects = storage.all()
@@ -69,14 +69,14 @@ class HBNBCommand(cmd.Cmd):
                 if obj_key not in objects:
                     print(self.error_class["dont_exists_id"])
                 else:
-                    print(json.dumps(objects[obj_key]))
+                    print(objects[obj_key])
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id"""
         args = arg.split()
         if not args:
             print(self.error_class["missing_class"])
-        elif args[0] not in ["BaseModel"]:
+        elif args[0] not in self.classes:
             print(self.error_class["dont_exists_class"])
         elif len(args) < 2:
             print(self.error_class["missing_id"])
@@ -92,7 +92,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Prints all string representation of all instances"""
-        if arg and arg not in ["BaseModel"]:
+        if arg and arg not in self.classes:
             print(self.error_class["dont_exists_class"])
         else:
             objects = storage.all()
@@ -104,7 +104,7 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if not args:
             print(self.error_class["missing_class"])
-        elif args[0] not in ["BaseModel"]:
+        elif args[0] not in self.classes:
             print(self.error_class["dont_exists_class"])
         elif len(args) < 2:
             print(self.error_class["missing_id"])
