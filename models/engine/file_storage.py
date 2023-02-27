@@ -12,6 +12,7 @@ class FileStorage:
     """
     __file_path = "file.json"
     __objects = {}
+    __classes = {}
 
     """
     Public instance methods:
