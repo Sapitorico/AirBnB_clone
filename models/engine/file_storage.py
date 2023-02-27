@@ -10,9 +10,9 @@ class FileStorage:
         __file_path: string -Route to the JSON file (for example: file.json)
         __objects: Dictionary: Vacuum
     """
-    __file_path = "file.json"
-    __objects = {}
-    __classes = {}
+    def __init__(self):
+        self.__file_path = "file.json"
+        self.__objects = {}
 
     """
     Public instance methods:
@@ -36,13 +36,9 @@ class FileStorage:
             json.dump(self.__objects, f)
 
     def reload(self):
-        try:
-            with open(FileStorage.__file_path, 'r') as f:
-                obj_dict = json.load(f)
-                for key, value in obj_dict.items():
-                    cls_name = value["__class__"]
-                    if cls_name in self.__classes:
-                        obj = self.__classes[cls_name](**value)
-                        self.__objects[key] = obj
-        except FileNotFoundError:
-            pass
+        if os.path.isfile(self.__file_path):
+            with open(self.__file_path, "r", encoding='utf-8') as f:
+                self.__objects = json.load(f)
+        else:
+            with open(self.__file_path, "w", encoding='utf-8') as f:
+                json.dump(self.__objects, f)
